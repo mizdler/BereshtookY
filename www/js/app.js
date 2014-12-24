@@ -27,18 +27,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
-  $stateProvider
+
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  $stateProvider.state('tab', {
     url: "/tab",
     abstract: true,
     templateUrl: "templates/tabs.html"
-  })
+  });
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
+  $stateProvider.state('tab.dash', {
     url: '/dash',
     views: {
       'tab-dash': {
@@ -46,9 +46,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'DashCtrl'
       }
     }
-  })
+  });
 
-  .state('tab.chats', {
+  $stateProvider.state('tab.chats', {
       url: '/chats',
       views: {
         'tab-chats': {
@@ -56,18 +56,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
           controller: 'ChatsCtrl'
         }
       }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
+    });
 
-  .state('tab.friends', {
+  $stateProvider.state('tab.chat-detail', {
+    url: '/chats/:chatId',
+    views: {
+      'tab-chats': {
+        templateUrl: 'templates/chat-detail.html',
+        controller: 'ChatDetailCtrl'
+      }
+    }
+  });
+
+  $stateProvider.state('tab.friends', {
       url: '/friends',
       views: {
         'tab-friends': {
@@ -76,17 +77,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     })
-    .state('tab.friend-detail', {
-      url: '/friend/:friendId',
-      views: {
-        'tab-friends': {
-          templateUrl: 'templates/friend-detail.html',
-          controller: 'FriendDetailCtrl'
-        }
+  $stateProvider.state('tab.friend-detail', {
+    url: '/friend/:friendId',
+    views: {
+      'tab-friends': {
+        templateUrl: 'templates/friend-detail.html',
+        controller: 'FriendDetailCtrl'
       }
-    })
+    }
+  });
 
-  .state('tab.account', {
+  $stateProvider.state('tab.account', {
     url: '/account',
     views: {
       'tab-account': {
@@ -96,7 +97,37 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   });
 
+
+  $stateProvider.state('signup', {
+    url: "/signup",
+    abstract: true,
+    template: '<ion-nav-view/>'
+  });
+
+  $stateProvider.state('signup.number', {
+      url: '/number',
+      templateUrl: 'templates/signup/number.html',
+      controller: 'SignupNumberCtrl'
+  });
+
+  $stateProvider.state('signup.verification', {
+      url: '/verification',
+      templateUrl: 'templates/signup/verification.html',
+      controller: 'SignupVerificationCtrl'
+  });
+
+  $stateProvider.state('signup.profile', {
+      url: '/profile',
+      templateUrl: 'templates/signup/profile.html',
+      controller: 'SignupProfileCtrl'
+  });     
+
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  if(window.localStorage.getItem('configured')){
+    $urlRouterProvider.otherwise('/tab/dash');
+  }
+  else{
+    $urlRouterProvider.otherwise('/signup/number');
+  }
 
 });
