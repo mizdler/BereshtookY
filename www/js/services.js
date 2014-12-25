@@ -1,6 +1,6 @@
-angular.module('starter.services', [])
+var appFactory = angular.module('starter.services', [])
 
-.factory('Chats', function() {
+appFactory.factory('Chats', function() {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
@@ -47,12 +47,12 @@ angular.module('starter.services', [])
       return null;
     }
   }
-})
+});
 
 /**
  * A simple example service that returns some data.
  */
-.factory('Friends', function() {
+appFactory.factory('Friends', function() {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
@@ -95,3 +95,91 @@ angular.module('starter.services', [])
     }
   }
 });
+
+appFactory.factory('Socket', function($rootScope){
+  var socket = io.connect('http://192.168.1.4:3998');
+  var factory = {};
+
+  factory.on = function(eventName, callback){
+    socket.on(eventName, function(){
+      var args = arguments;
+      $rootScope.$apply(function(){
+        callback.apply(socket, args);
+      });
+    });
+  }
+
+  factory.emit = function(eventName, data, callback){
+      socket.emit(eventName, data, function () {
+        var args = arguments;
+        $rootScope.$apply(function() {
+          if (callback) {
+            callback.apply(socket, args);
+          }
+        });
+      });
+  }
+
+  factory.isConnected = function(){
+    return socket.connected;
+  }
+
+  return factory;
+});
+
+
+
+appFactory.factory('Cipher', function(){
+  factory = {};
+  var cipherKey = window.localStorage.getItem('cipherKey');
+
+  factory.encrypt = function(data){
+    var encryptedData = sjcl.encrypt(cipherKey, JSON.stringify(data));
+    return encryptedData;
+  };
+
+  factory.decrypt = function(encryptedData){
+    var data = sjcl.decrypt(cipherKey, encryptedData);
+    return JSON.parse(data);
+  };
+
+  factory.generateCipherKey = function(userId, verificationCode){
+    cipherKey = userId + verificationCode;
+    window.localStorage.setItem('cipherKey', cipherKey);
+    return cipherKey;
+  };  
+
+  return factory;
+});
+
+
+appFactory.factory('Storage', function(){
+  factory = {};
+
+  factory.setItem = function(key, value){
+    window.localStorage.setItem(key, value);
+  };
+
+  factory.getItem = function(key){
+    return window.localStorage.getItem(key);
+  };
+
+  factory.getUserId = function(){
+    return window.localStorage.getItem('userId');
+  };
+
+  return factory;
+});
+
+appFactory.factory('Mongo', function(){
+  factory = {};
+
+  return factory;
+});
+
+
+appFactory.factory('Redis', function(){
+  factory = {};
+
+  return factory;
+})

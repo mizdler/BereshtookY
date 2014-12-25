@@ -1,38 +1,21 @@
-<!DOCTYPE html>
+<ion-view view-title="{{statusMsg}}">
+  <ion-content>
 
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="msapplication-tap-highlight" content="no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
-        <link rel="stylesheet" type="text/css" href="css/jquery.mobile.theme-1.4.5.min.css" />
-        
-    </head>
-    <body>
+    <label class="item item-input">
+      <span class="input-label">Username:</span>
+      <input type="text" ng-model="form.username">
+    </label>
 
-		<div data-role="page" id="pgSignupProfile" data-dom-cache="true">
+    <label class="item item-input">
+      <span class="input-label">Display Name:</span>
+      <input type="text" ng-model="form.displayName">
+    </label>
 
-			<div data-role="header">
-				<h1>Profile</h1>
-				<h3 id="hdrUsername"></h3>
-			</div>
+    <label class="item item-input">
+      <span class="input-label">Birthday:</span>
+      <input type="date" ng-model="form.birthdate">
+    </label>
 
-			<div role="main" class="ui-content">
-                Username: <input id="txtUsername" type="text" />
-                Display Name: <input id="txtDisplayName" type="text" />
-                Birthdate<input id="txtBirthdate" type="date" />
-
-                <div id="btnGoHome" class="ui-btn ui-corner-all ui-btn-inline" data-prefetch>Next</div>
-            </div>
-            
-			<div data-role="footer">
-
-			</div>		    	
-
-		</div>
-
-    </body>
-</html>
+    <input type="button" ng-click="submitProfile()" class="button button-block button-light" value="Next" />
+  </ion-content>
+</ion-view>

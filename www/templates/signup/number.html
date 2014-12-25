@@ -1,5 +1,9 @@
-<ion-view view-title="Number">
+<ion-view view-title="{{statusMsg}}" >
   <ion-content>
-    <div>ALL OK</div>
+	<label class="item item-input">
+	  <span class="input-label">Phone number:</span>
+	  <input type="tel" ng-model="form.phoneNumber">
+	</label>
+    <input type="button" ng-click="submitNumber()" class="button button-block button-light"  value="Next" />
   </ion-content>
 </ion-view>

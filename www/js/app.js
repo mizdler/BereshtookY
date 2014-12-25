@@ -111,7 +111,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   });
 
   $stateProvider.state('signup.verification', {
-      url: '/verification',
+      url: '/verification/:phoneNumber/:userId',
       templateUrl: 'templates/signup/verification.html',
       controller: 'SignupVerificationCtrl'
   });
