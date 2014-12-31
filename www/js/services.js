@@ -97,7 +97,7 @@ appFactory.factory('Friends', function() {
 });
 
 appFactory.factory('Socket', function($rootScope){
-  var socket = io.connect('http://192.168.1.4:3998');
+  var socket = io.connect('http://bereshtook.ir:3998');
   var factory = {};
 
   factory.on = function(eventName, callback){
