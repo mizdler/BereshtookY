@@ -16,29 +16,32 @@
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
+    
     <script src="lib/socket.io.js"></script>
+    <script src="lib/jsencrypt.min.js"></script>
     <script src="lib/sjcl.js"></script>
 
-    <script src="js/app.js"></script>
-    <script src="js/controllers.js"></script>
-    <script src="js/services.js"></script>
+    <script src="app/app.js"></script>
+    <!--<script src="js/controllers.js"></script> -->
+    <!-- <script src="js/services.js"></script> -->
+    <script src="app/chat-list/chat-list-ctrl.js"></script>
+    <script src="app/friends/friends-ctrl.js"></script>
+    <script src="app/chat/chat-ctrl.js"></script>
+    <script src="app/register/phone-number-ctrl.js"></script>
+    <script src="app/register/verification-ctrl.js"></script>
+
+
+    <script src="app/services/socketApi.js"></script>
+    <script src="app/services/rsa.js"></script>
+    <script src="app/services/aes.js"></script>
+    <script src="app/services/storage.js"></script>
+    <script src="app/directives/fall-back-src.js"></script>
   </head>
-  <body ng-app="starter">
-    <!--
-      The nav bar that will be updated as we navigate between views.
-    -->
-    <ion-nav-bar class="bar-stable">
-      <ion-nav-back-button>
-      </ion-nav-back-button>
-    </ion-nav-bar>
-    <!--
-      The views will be rendered in the <ion-nav-view> directive below
-      Templates are in the /templates folder (but you could also
-      have templates inline in this html file if you'd like).
-    -->
+  <body ng-app="bereshtook">
     <ion-nav-view></ion-nav-view>
   </body>
 </html>
