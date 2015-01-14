@@ -1,0 +1,14 @@
+<ion-view title="Recent Chats" ng-controller="ChatListCtrl as vm">
+	<ion-content class="has-header">
+		<div class="list">
+			<a class="item item-avatar item-icon-right" ng-repeat="chat in vm.chatsList"
+			   ui-sref="home.chat({id: chat.id})">
+   				<img ng-src="{{chat.face}}" data-fallback-src="img/default-avatar-boy.png">
+   				<h2>{{chat.name}}</h2>
+   				<h5 style="color: gray">{{chat.lastText}}</h5>
+				<i class="icon ion-chevron-right icon-accessory"></i>
+				<h6 class="text-right" style="color: silver">{{chat.lastTime}}</h6>
+			</a>
+		</div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,20 @@
+<ion-view title="Verification" ng-controller="VerificationCtrl as vm">
+	<ion-content class="registerBackground">
+		<div class="card padding text-wrap">
+			Activation
+		</div>
+		<div class="card padding">
+			<p>
+				An activation code was send to your mobile phone.
+				<br>
+				Please enter the code bellow.
+			</p>
+			<div class="item item-input  item-devider">
+				<input type="tel" ng-model="activationCode" placeholder="activation code" maxlength="11">
+			</div>
+			<div class="item">
+				<button class="button button-full button-balanced" ng-click="vm.register(activationCode)" class="button button-block button-light">Register</button>
+			</div>	
+		</div>
+	</ion-content>
+</ion-view>
